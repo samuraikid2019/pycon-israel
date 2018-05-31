@@ -35,7 +35,7 @@
                 <div class="col-md-8 presentation well">
                     <h3><a href="{% url "schedule_presentation_detail" presentation.pk %}">{{ presentation.title }}</a></h3>
                     <h4>{{ presentation.speakers|join:", " }}</h4>
-                    {{ presentation.description }}
+                    <bdi>{{ presentation.description }}</bdi>
                     {% if presentation.slot %}
                         <h4>
                             {{ presentation.slot.day.date|date:"l" }}
