@@ -5,3 +5,4 @@ dev.db
 static/dist/
 site_media
 .DS_Store
+.venv/

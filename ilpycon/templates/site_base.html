@@ -7,110 +7,111 @@
 
 
 {% block styles %}
-    <link href="{% static "css/app.css" %}" rel="stylesheet" />
+<link href="{% static "css/app.css" %}" rel="stylesheet" />
 {% endblock %}
 
 
 {% block extra_head_base %}
-    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
-    <link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon-96x96.png' %}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
-    {% block extra_head %}{% endblock %}
+<link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+<link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicon-32x32.png' %}">
+<link rel="icon" type="image/png" sizes="96x96" href="{% static 'images/favicon-96x96.png' %}">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicon-16x16.png' %}">
+<script defer src="https://use.fontawesome.com/releases/v5.0.4/js/all.js"></script>
+{% block extra_head %}{% endblock %}
 {% endblock %}
 
 {% block body_extra_attributes %}{% endblock %}
 
 {% block topbar_base %}
 <div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=171131396875691&autoLogAppEvents=1';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-<script>window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  fjs.parentNode.insertBefore(js, fjs);
+<script>(function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.12&appId=171131396875691&autoLogAppEvents=1';
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+<script>window.twttr = (function (d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0],
+      t = window.twttr || {};
+    if (d.getElementById(id)) return t;
+    js = d.createElement(s);
+    js.id = id;
+    js.src = "https://platform.twitter.com/widgets.js";
+    fjs.parentNode.insertBefore(js, fjs);
 
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
+    t._e = [];
+    t.ready = function (f) {
+      t._e.push(f);
+    };
 
-  return t;
-}(document, "script", "twitter-wjs"));</script>
-  <header id="main-header">
-    <div id="header-extra"></div>
-    <h1 id="logo"><a href="{% url 'home' %}">{% trans "PyCon Israel 2018" %}</a></h1>
+    return t;
+  }(document, "script", "twitter-wjs"));</script>
+<header id="main-header">
+  <div id="header-extra"></div>
+  <h1 id="logo"><a href="{% url 'home' %}">{% trans "PyCon Israel 2019" %}</a></h1>
+  </a>
 
-    <nav class="navbar navbar-expand-md navbar-topbar navbar-dark">
-      <div class="container">
-        {% block topbar %}
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
-          <span class="fa fa-bars"></span>
-        </button>
+  <nav class="navbar navbar-expand-md navbar-topbar navbar-dark">
+    <div class="container">
+      {% block topbar %}
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+        <span class="fa fa-bars"></span>
+      </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          {% block nav %}
-          <ul class="navbar-nav {% if LANGUAGE_BIDI %}ml-auto{% else %}mr-auto{% endif %}">
-            {% block nav_items %}
-            {% sitetree_menu from "main" include "trunk" %}
-            {% if request.user.is_authenticated %}
-            <li class="navbar-item">
-              <a class="nav-link" href="{% url "dashboard" %}"><i class="fas fa-tasks"></i> {% trans "Dashboard" %}</a>
-            </li>
-            {% endif %}
-            {% endblock %}
-          </ul>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% block nav %}
+        <ul class="navbar-nav {% if LANGUAGE_BIDI %}ml-auto{% else %}mr-auto{% endif %}">
+          {% block nav_items %}
+          {% sitetree_menu from "main" include "trunk" %}
+          {% if request.user.is_authenticated %}
+          <li class="navbar-item">
+            <a class="nav-link" href="{% url "dashboard" %}"><i class="fas fa-tasks"></i> {% trans "Dashboard" %}</a>
+          </li>
+          {% endif %}
           {% endblock %}
-          {% block account_bar %}{% include "_account_bar.html" %}{% endblock %}
-          {% block language_bar %}{% include "_language_bar.html" %}{% endblock %}
-        </div>
-        {% endblock topbar %}
+        </ul>
+        {% endblock %}
+        {% block account_bar %}{% include "_account_bar.html" %}{% endblock %}
+        {% block language_bar %}{% include "_language_bar.html" %}{% endblock %}
       </div>
-    </nav>
+      {% endblock topbar %}
+    </div>
+  </nav>
 
-  </header>
+</header>
 
 {% endblock %}
 
 
 {% block body_base %}
-    <main class="container">
-        <div id="content-section" class="row">
-            <div id="content-body" class="col-md-9">
-                {% block body %}
-                {% endblock %}
-            </div>
-            <div class="col-md-3">
-                {% block sidebar %}
-                    {% include "_default_sidebar.html" %}
-                {% endblock %}
-            </div>
-        </div>
-    </main>
+<main class="container">
+  <div id="content-section" class="row">
+    <div id="content-body" class="col-md-9">
+      {% block body %}
+      {% endblock %}
+    </div>
+    <div class="col-md-3">
+      {% block sidebar %}
+      {% include "_default_sidebar.html" %}
+      {% endblock %}
+    </div>
+  </div>
+</main>
 {% endblock %}
 
 
 {% block footer %}
-    {% include "_footer.html" %}
+{% include "_footer.html" %}
 {% endblock %}
 
 
 {% block scripts %}
-    <script src="{% static "js/site.js" %}"></script>
-    {% block extra_script %}{% endblock %}
+<script src="{% static "js/site.js" %}"></script>
+{% block extra_script %}{% endblock %}
 {% endblock %}
 
 {% block extra_body_base %}
-    {% analytics %}
-    {% block extra_body %}{% endblock %}
+{% analytics %}
+{% block extra_body %}{% endblock %}
 {% endblock %}

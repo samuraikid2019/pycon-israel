@@ -9,7 +9,7 @@ boto3
 easy-thumbnails
 gunicorn
 html5lib
-markdown
+markdown==2.6.11
 Pillow
 pinax-boxes==3.0.1
 pinax-pages==0.5.0
